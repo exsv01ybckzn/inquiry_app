@@ -6,8 +6,31 @@ use Illuminate\Http\Request;
 
 class InquiryController extends Controller
 {
+
+	public function index()
+	{
+		return view('content.index');
+	}
+
+
+	public function confirm(Request $request)
+	{
+		//
+		$request->validate([
+			'name' => 'required',
+			'email' => 'required|email',
+			'company' => 'required',
+			'title' => 'required',
+			'message' => 'required',
+		]);
+
+		$inputs = $request->all();
+
+		return view('content.confirm',['inputs' => $inputs,]);
+	}
+
 	//
-	public function entry(Request $request)
+	public function send(Request $request)
 	{
 		try
 		{
