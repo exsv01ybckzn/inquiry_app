@@ -13,8 +13,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('inquiry');
-});
+Route::get('/', 'App\Http\Controllers\InquiryController@index')->name('content.index');
+Route::post('/confirm', 'App\Http\Controllers\InquiryController@confirm')->name('content.confirm');
+Route::post('/send', 'App\Http\Controllers\InquiryController@send')->name('content.send');
 
-Route::post('/entry', 'InquiryController@entry')->name('entry');
