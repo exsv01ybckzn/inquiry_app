@@ -48,7 +48,7 @@
 							<input id="message" name="message" value="{{ $inputs['message'] }}" type="hidden">
 						</div>
 
-						<button type="submit" class="btn btn-primary" name="back" value="back">修正</button>
+						<button type="submit" class="btn btn-primary" name="next" value="back">修正</button>
 						<button type="submit" class="btn btn-primary" name="next" value="submit">送信</button>
 
 					</form>
