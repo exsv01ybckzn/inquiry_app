@@ -48,7 +48,7 @@
 
 						</div>
 						<div class="form-group">
-							<label for=="title">タイトル</label>
+							<label for=="title">案件・タイトル</label>
 							<input type="text" id="title" name="title" class="form-control" value="{{ old('title') }}">
 
 							@if ($errors->has('title'))
@@ -57,7 +57,7 @@
 
 						</div>
 						<div class="form-group">
-							<label for="body">要望・質問</label>
+							<label for="body">提案・要望・質問</label>
 							<textarea id="body" name="body" rows="8" cols="80" class="form-control">{{ old('body') }}</textarea>
 
 							@if ($errors->has('body'))
@@ -72,11 +72,30 @@
 
 				<br>
 
+				@if(!empty($histories))
 				<!-- 問い合わせ　履歴 -->
 				<div class="card-header">
+					問い合わせ　履歴
+				</div>
+				<div class="card-body table-responsivei collapse show" id="inquiry_save">
 					<table class="table table-borderless">
+						<thead>
+							<th scope="col">日付</th>
+							<th scope="col">案件・タイトル</th>
+							<th scope="col">提案・要望・質問</th>
+						</thead>
+						@foreach($histories as $history)
+						<body>
+							<tr class="table">
+								<td scope="col">{{ date('Y-m-d', strtotime($history->created_at)) }}</td>
+								<td scope="col">{{ $history->title }}</td>
+								<td scope="col">{{ $history->body }}</td>
+							</tr>
+						</body>
+						@endforeach
 					</table>
 				</div>
+				@endif
 			</div>
 		</div>
 	</div>
