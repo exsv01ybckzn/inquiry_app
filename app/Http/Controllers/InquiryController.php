@@ -5,14 +5,20 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Mail\ContactSendmail;
 use App\Models\Inquiry;
-
+use App\Models\Member;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class InquiryController extends Controller
 {
 
 	public function index()
 	{
-		return view('content.index');
+
+		$members = DB::table('members')->get();
+		$histories = DB::table('inquiries')->orderBy('id', 'desc')->get();
+
+		return view('content.index', ['members'=>$members, 'histories'=>$histories]);
 	}
 
 
@@ -53,10 +59,14 @@ class InquiryController extends Controller
 		} 
 		else
 		{
+			//メール送信
 			\Mail::to($inputs['email'])->send(new ContactSendmail($inputs));
 
+
+			//データベース保存
 			try
 			{
+				/*
 				$inquiry = new Inquiry;
 
 				$inquiry->name = $inputs['name'];
@@ -73,6 +83,22 @@ class InquiryController extends Controller
 				$inquiry->body = $inputs['body'];
 
 				$inquiry->save();
+				*/
+
+				$now = Carbon::now('Asia/Tokyo');
+				$today = $now->format('Y-m-d H:i:s');
+
+				DB::table('inquiries')->insert([
+					'name' => $inputs['name'],
+					'email' => $inputs['email'],
+					'company' => $inputs['company'],
+					'staffs' => $inputs['staffs'],
+					'title' => $inputs['title'],
+					'body' => $inputs['body'],
+					'created_at' => $today,
+					'updated_at' =>	$today
+				]);
+
 			}
 			catch(\IlluminateDatabaseQueryException $e)
 			{
