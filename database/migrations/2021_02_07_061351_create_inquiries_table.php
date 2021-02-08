@@ -20,7 +20,7 @@ class CreateInquiriesTable extends Migration
 		$table->string('email');
 		$table->string('company')->nullable();
 		$table->string('staffs');
-		$table->string('message');
+		$table->string('body');
 		$table->timestamps();
         });
     }

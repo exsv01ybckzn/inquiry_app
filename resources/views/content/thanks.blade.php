@@ -1,5 +1,5 @@
 @extends('layouts.layout')
 
 @section('content')
-	<h1>{{ _('送信が完了しました。') }}</h1>
+	<h3>送信が完了しました。</h3>
 @endsection

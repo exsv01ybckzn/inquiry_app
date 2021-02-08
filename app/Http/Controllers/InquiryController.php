@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Mail\ContactSendmail;
+use App\Models\Inquiry;
+
 
 class InquiryController extends Controller
 {
@@ -22,7 +24,7 @@ class InquiryController extends Controller
 			'email' => 'required|email',
 			'company' => 'required',
 			'title' => 'required',
-			'message' => 'required',
+			'body' => 'required',
 		]);
 
 		$inputs = $request->all();
@@ -39,41 +41,38 @@ class InquiryController extends Controller
 			'email' => 'required|email',
 			'company' => 'required',
 			'title' => 'required',
-			'message' => 'required',
+			'body' => 'required',
 		]);
 
 		$next = $request->input('next');
 		$inputs = $request->except('next');
 
-		return v;
-
-		$if ($next !== 'submit')		
+		if ($next !== 'submit')		
 		{
-			//return Redirect::redirect()->route('content.index')->withInput($inputs);
+			return redirect()->route('content.index')->withInput($inputs);
 		} 
 		else
 		{
 			\Mail::to($inputs['email'])->send(new ContactSendmail($inputs));
 
-			$request->seesion()->regenerateToken();
-
 			try
 			{
 				$inquiry = new Inquiry;
 
-				$inquiry->name = $request->input('name');
+				$inquiry->name = $inputs['name'];
 
-				$inquiry->email = $request->input('email');
+				$inquiry->email = $inputs['email'];
 
-				if(!empty($request->input('company')))
+				if(!empty($inputs['company']))
 				{
-					$inquiry->company = $request->input('company');
+					$inquiry->company = $inputs['company'];
 				}
 
-				$inquiry->staffs = $request->input('staffs');
+				$inquiry->staffs = $inputs['staffs'];
 
-				$inquiry->message = $request->input('message');
+				$inquiry->body = $inputs['body'];
 
+				$inquiry->save();
 			}
 			catch(\IlluminateDatabaseQueryException $e)
 			{
@@ -90,6 +89,7 @@ class InquiryController extends Controller
 				return back()->withInput()->withErrors(['error_message'=>"入力データに誤りがある可能性があります。\n入力データの確認をお願い致します。"]);
 			}
 
+			$request->session()->regenerateToken();
 			return view('content.thanks');
 		}
 	}

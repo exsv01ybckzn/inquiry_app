@@ -57,11 +57,11 @@
 
 						</div>
 						<div class="form-group">
-							<label for="message">要望・質問</label>
-							<textarea id="message" name="message" rows="8" cols="80" class="form-control">{{ old('message') }}</textarea>
+							<label for="body">要望・質問</label>
+							<textarea id="body" name="body" rows="8" cols="80" class="form-control">{{ old('body') }}</textarea>
 
-							@if ($errors->has('message'))
-								<p class="error-message">{{ $errors->first('message') }}</p>
+							@if ($errors->has('body'))
+								<p class="error-message">{{ $errors->first('body') }}</p>
 							@endif
 						</div>
 

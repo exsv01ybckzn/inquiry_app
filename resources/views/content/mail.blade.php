@@ -24,7 +24,7 @@
 <br>
 
 [問い合わせ内容]<br>
-{!! nl2br(message) !!}<br>
+{!! nl2br($body) !!}<br>
 
 <br>
 

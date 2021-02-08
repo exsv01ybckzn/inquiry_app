@@ -43,9 +43,9 @@
 
 						</div>
 						<div class="form-group">
-							<label for="message">要望・質問</label>
-							{!! nl2br(e($inputs['message'])) !!}
-							<input id="message" name="message" value="{{ $inputs['message'] }}" type="hidden">
+							<label for="body">要望・質問</label>
+							{!! nl2br(e($inputs['body'])) !!}
+							<input id="body" name="body" value="{{ $inputs['body'] }}" type="hidden">
 						</div>
 
 						<button type="submit" class="btn btn-primary" name="next" value="back">修正</button>

@@ -23,14 +23,14 @@ class ContactSendmail extends Mailable
 	*
 	* @return void
 	*/
-	public function __construct()
+	public function __construct($inputs)
 	{
 		$this->name = $inputs['name'];
 		$this->email = $inputs['email'];
 		$this->company = $inputs['company'];
 		$this->title = $inputs['title'];
 		$this->staffs = $inputs['staffs'];
-		$this->message = $inputs['message'];
+		$this->body = $inputs['body'];
 	}
 
 	/**
@@ -40,16 +40,17 @@ class ContactSendmail extends Mailable
 	*/
 	public function build()
 	{
-		return $this->from('exsv01ybckzn@gmail.com')
+		return $this->from('test@your-domain.com')
 				->subject('問い合わせ　自動送信メール')
 				->view('content.mail')
 				->with([
-					'name' => this->name,
-					'email' => this->email,
-					'company' => this->company,
-					'staffs' => this->staffs,
-					'title' => this->title,
-					'message' => this->message,
+					'name' => $this->name,
+					'email' => $this->email,
+					'company' => $this->company,
+					'staffs' => $this->staffs,
+					'title' => $this->title,
+					'body' => $this->body,
 				]);
+
 	}
 }
