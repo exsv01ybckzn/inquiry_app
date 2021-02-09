@@ -1,5 +1,7 @@
 @extends('layouts.layout')
 
 @section('content')
-	<h4>送信が完了しました。</h4>
+	<div class="col-md-8">
+		<h5>送信が完了しました。</h5>
+	</div>
 @endsection
