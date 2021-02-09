@@ -29,10 +29,12 @@ class InquiryController extends Controller
 			'name' => 'required',
 			'email' => 'required|email',
 			'company' => 'required',
+			'staffs' => 'required',
 			'title' => 'required',
 			'body' => 'required',
 		]);
 
+		$members = DB::table('members')->get();
 		$inputs = $request->all();
 
 		return view('content.confirm',['inputs' => $inputs,]);
@@ -46,6 +48,7 @@ class InquiryController extends Controller
 			'name' => 'required',
 			'email' => 'required|email',
 			'company' => 'required',
+			'staffs' => 'required',
 			'title' => 'required',
 			'body' => 'required',
 		]);
@@ -59,8 +62,11 @@ class InquiryController extends Controller
 		} 
 		else
 		{
+			$to = DB::table('members')->select('email')->where('name', $inputs['staffs'])->first();
+
+
 			//メール送信
-			\Mail::to($inputs['email'])->send(new ContactSendmail($inputs));
+			\Mail::to($to)->send(new ContactSendmail($inputs));
 
 
 			//データベース保存

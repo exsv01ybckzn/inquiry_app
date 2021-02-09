@@ -30,7 +30,7 @@
 							@endif
 						</div>
 						<div class="form-group">
-							<label for=="company">会社名(任意)</label>
+							<label for=="company">会社名</label>
 							<input type="text" id="company" name="company" class="form-control" value="{{ old('company')}}">
 
 							@if ($errors->has('company'))
@@ -40,7 +40,14 @@
 						</div>
 						<div class="form-group">
 							<label for=="staffs">担当者</label>
-							<input type="text" id="staffs" name="staffs" class="form-control" value="{{ old('staffs') }}">
+							<input type="text" id="staffs" name="staffs" class="form-control" value="{{ old('staffs') }}" list="list">
+							@if (!empty($members))
+								<datalist id="list">
+									@foreach($members as $member)
+										<option value="{{ $member->name }}">
+									@endforeach
+								</datalist>
+							@endif
 
 							@if ($errors->has('staffs'))
 								<p class="error-message">{{ $errors->first('staffs') }}</p>
@@ -80,16 +87,17 @@
 				<div class="card-body table-responsivei collapse show" id="inquiry_save">
 					<table class="table table-borderless">
 						<thead>
-							<th scope="col">日付</th>
-							<th scope="col">案件・タイトル</th>
-							<th scope="col">提案・要望・質問</th>
 						</thead>
 						@foreach($histories as $history)
 						<body>
 							<tr class="table">
-								<td scope="col">{{ date('Y-m-d', strtotime($history->created_at)) }}</td>
-								<td scope="col">{{ $history->title }}</td>
-								<td scope="col">{{ $history->body }}</td>
+								<td class="table-text">
+									<div>	
+										<p>日付:{{ date('Y-m-d', strtotime($history->created_at)) }}</p>
+										<p>案件:{{ $history->title }}</p>
+										<p>内容:{{ $history->body }}</p><hr>
+									</div>
+								</td>
 							</tr>
 						</body>
 						@endforeach
