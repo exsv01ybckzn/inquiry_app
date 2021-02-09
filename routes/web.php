@@ -17,3 +17,6 @@ Route::get('/', 'App\Http\Controllers\InquiryController@index')->name('content.i
 Route::post('/confirm', 'App\Http\Controllers\InquiryController@confirm')->name('content.confirm');
 Route::post('/send', 'App\Http\Controllers\InquiryController@send')->name('content.send');
 
+Route::get('/thank', function() {
+	return view('content.thanks');
+});
