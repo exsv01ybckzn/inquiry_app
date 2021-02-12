@@ -21,13 +21,12 @@ class InquiryController extends Controller
 		return view('content.index', ['members'=>$members, 'histories'=>$histories]);
 	}
 
-
-	public function confirm(Request $request)
+	//
+	public function send(Request $request)
 	{
 		//バリデーション実行（結果に問題があれば処理を中断してエラーを返す）
 		$request->validate([
 			'name' => 'required',
-			'email' => 'required|email',
 			'company' => 'required',
 			'staffs' => 'required',
 			'title' => 'required',
@@ -36,25 +35,6 @@ class InquiryController extends Controller
 
 		$members = DB::table('members')->get();
 		$inputs = $request->all();
-
-		return view('content.confirm',['inputs' => $inputs,]);
-	}
-
-	//
-	public function send(Request $request)
-	{
-		//バリデーション実行（結果に問題があれば処理を中断してエラーを返す）
-		$request->validate([
-			'name' => 'required',
-			'email' => 'required|email',
-			'company' => 'required',
-			'staffs' => 'required',
-			'title' => 'required',
-			'body' => 'required',
-		]);
-
-		$next = $request->input('next');
-		$inputs = $request->except('next');
 
 		if ($next !== 'submit')		
 		{
