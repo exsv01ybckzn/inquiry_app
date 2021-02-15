@@ -95,4 +95,12 @@ class InquiryController extends Controller
 		$request->session()->regenerateToken();
 		return view('content.thanks');
 	}
+
+	public function history()
+	{
+		$members = DB::table('members')->get();
+		$histories = DB::table('inquiries')->orderBy('id', 'desc')->get();
+
+		return view('content.history', ['members'=>$members, 'histories'=>$histories]);
+	}
 }
