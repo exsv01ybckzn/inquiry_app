@@ -13,10 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', 'App\Http\Controllers\InquiryController@index')->name('content.index');
-Route::post('/confirm', 'App\Http\Controllers\InquiryController@confirm')->name('content.confirm');
-Route::post('/send', 'App\Http\Controllers\InquiryController@send')->name('content.send');
+Route::group(['middleware'=>'auth'], function()
+{
 
+	Route::get('/', 'App\Http\Controllers\InquiryController@index')->name('content.index');
+	Route::post('/entry', 'App\Http\Controllers\InquiryController@entry')->name('content.entry');
+
+	Route::get('logout', function()
+	{
+		Auth::logout();
+		return redirect() -> to('/');
+	});
+});
 
 Auth::routes();
 
