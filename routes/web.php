@@ -19,6 +19,9 @@ Route::group(['middleware'=>'auth'], function()
 	Route::get('/', 'App\Http\Controllers\InquiryController@index')->name('content.index');
 	Route::post('/entry', 'App\Http\Controllers\InquiryController@entry')->name('content.entry');
 
+	Route::get('/history', 'App\Http\Controllers\InquiryController@history')->name('content.history');
+	Route::post('/detail', 'App\Http\Controllers\InquiryController@detail')->name('content.detail');
+
 	Route::get('logout', function()
 	{
 		Auth::logout();
