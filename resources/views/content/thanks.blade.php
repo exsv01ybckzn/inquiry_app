@@ -2,11 +2,11 @@
 
 @section('content')
 	<div class="col-md-8">
-		<h5>送信が完了しました。</h5>
+		<h5>保存が完了しました。</h5>
 		<br><br><br>
-		<form action="{{ route('content.entry') }}" method="POST">
-			<button type="submit" class="btn btn-primary" name="btn" value="back">ホーム</button>
-			<button type="submit" class="btn btn-primary" name="btn" value="next">履歴</button>
+		<form action="{{ route('content.index') }}" method="GET">
+			@csrf
+			<button type="submit" class="btn btn-primary">引き続き登録する</button>
 		</form>
 	</div>
 @endsection
