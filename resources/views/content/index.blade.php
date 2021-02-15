@@ -11,7 +11,7 @@
 					お客様要望内容　入力
 				</div>
 				<div class="card-body table-responsivei collapse show" id="inquiry_save">
-					<form action="{{ route('content.confirm') }}" method="POST" id="save">
+					<form action="{{ route('content.entry') }}" method="POST" id="save">
 						@csrf
 
 						<div class="form-group">
@@ -64,7 +64,7 @@
 							@endif
 						</div>
 
-						<button type="submit" class="btn btn-primary form-control">登録</button>
+						<button type="submit" class="btn btn-primary form-control" name="entry">登録</button>
 
 					</form>
 				</div>

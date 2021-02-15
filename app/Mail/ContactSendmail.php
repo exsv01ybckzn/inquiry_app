@@ -12,7 +12,6 @@ class ContactSendmail extends Mailable
 	use Queueable, SerializesModels;
 
 	private $name;
-	private $email;
 	private $company;
 	private $staffs;
 	private $title;
@@ -26,7 +25,6 @@ class ContactSendmail extends Mailable
 	public function __construct($inputs)
 	{
 		$this->name = $inputs['name'];
-		$this->email = $inputs['email'];
 		$this->company = $inputs['company'];
 		$this->title = $inputs['title'];
 		$this->staffs = $inputs['staffs'];
@@ -45,7 +43,6 @@ class ContactSendmail extends Mailable
 				->view('content.mail')
 				->with([
 					'name' => $this->name,
-					'email' => $this->email,
 					'company' => $this->company,
 					'staffs' => $this->staffs,
 					'title' => $this->title,
