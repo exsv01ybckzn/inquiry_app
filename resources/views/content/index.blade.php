@@ -26,7 +26,8 @@
 							@endif
 
 							@if ($errors->has('staffs'))
-								<p class="error-message">{{ $errors->first('staffs') }}</p>
+								<!-- p class="error-message">{{ $errors->first('staffs') }}</p -->
+								<p class="error-message"> 入力データがありません。</p>
 							@endif
 
 						</div>
@@ -35,7 +36,8 @@
 							<input type="text" id="company" name="company" class="form-control" value="{{ old('company')}}">
 
 							@if ($errors->has('company'))
-								<p class="error-message">{{ $errors->first('company') }}</p>
+								<!-- p class="error-message">{{ $errors->first('company') }}</p -->
+								<p class="error-message"> 入力データがありません。</p>
 							@endif
 						</div>
 						<div class="form-group">
@@ -43,7 +45,8 @@
 							<input type="text" id="name" name="name" class="form-control" value="{{ old('name')}}">
 						
 							@if ($errors->has('name'))
-								<p class="error-message">{{ $errors->first('name') }}</p>
+								<!-- p class="error-message">{{ $errors->first('name') }}</p -->
+								<p class="error-message"> 入力データがありません。</p>
 							@endif
 						</div>	
 						<div class="form-group">
@@ -51,7 +54,8 @@
 							<input type="text" id="title" name="title" class="form-control" value="{{ old('title') }}">
 
 							@if ($errors->has('title'))
-								<p class="error-message">{{ $errors->first('title') }}</p>
+								<!-- p class="error-message">{{ $errors->first('title') }}</p -->
+								<p class="error-message"> 入力データがありません。</p>
 							@endif
 
 						</div>
@@ -60,9 +64,16 @@
 							<textarea id="body" name="body" rows="8" cols="80" class="form-control">{{ old('body') }}</textarea>
 
 							@if ($errors->has('body'))
-								<p class="error-message">{{ $errors->first('body') }}</p>
+								<!-- p class="error-message">{{ $errors->first('body') }}</p -->
+								<p class="error-message"> 入力データがありません。</p>
 							@endif
 						</div>
+						
+						@error('error_message')
+						<div class="form-group alert alert-danger">
+							{{ $error_message }}
+						</div>
+						@enderror
 
 						<button type="submit" class="btn btn-primary form-control" name="entry">登録</button>
 
