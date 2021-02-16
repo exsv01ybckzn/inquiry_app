@@ -21,7 +21,7 @@
 		<!-- Styles -->
 		<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-		<title>大和電建株式会社　問い合わせ</title>
+		<title>大和電建株式会社　お客様要望内容</title>
 		
 	</head>
 	<body>
