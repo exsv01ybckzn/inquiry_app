@@ -39,7 +39,7 @@
                                     <input class="form-check-input" type="checkbox" name="remember" id="remember" checked {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
-                                        {{ __('保持　有無') }}
+                                        {{ __('ログイン保持') }}
                                     </label>
                                 </div>
                             </div>
