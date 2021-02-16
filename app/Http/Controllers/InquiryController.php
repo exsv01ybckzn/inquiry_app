@@ -103,4 +103,11 @@ class InquiryController extends Controller
 
 		return view('content.history', ['members'=>$members, 'histories'=>$histories]);
 	}
+
+	public function detail(Request $request)
+	{
+		$date = DB::table('inquiries')->where('id', $request->input('history_id'))->first();
+
+		return view('content.detail', ['date'=>$date]);
+	}
 }
