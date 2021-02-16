@@ -8,7 +8,7 @@
 			<div class="card">
 				<!-- 問い合わせ　内容 -->
 				<div class="card-header">
-					お客様要望内容　入力
+					お客様要望内容　詳細表示
 				</div>
 				<div class="card-body table-responsivei collapse show" id="inquiry_save">
 					<form action="{{ route('content.history') }}" method="GET" id="history">

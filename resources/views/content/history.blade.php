@@ -9,7 +9,7 @@
 				@if(!empty($histories))
 				<!-- 問い合わせ　履歴 -->
 				<div class="card-header">
-					問い合わせ　履歴
+					お客様要望内容　履歴
 				</div>
 				<div class="card-body table-responsivei collapse show" id="inquiry_save">
 					<table class="table table-borderless">
